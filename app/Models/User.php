@@ -18,8 +18,26 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'surname',
+        'username',
         'email',
+        'bar_number',
+        'card_serial_number',
+        'date_of_birth',
+        'gender',
+        'tin',
+        'chamber_name',
+        'chamber_address',
+        'profile_image',
+        'primary_contact',
+        'secondary_contact',
+        'academic_qualification',
+        'practice_region',
+        'practice_areas',
+        'practice_regions',
+        'role',
+        'status',
         'password',
     ];
 
@@ -42,4 +60,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function role(){
+        $this->has(Role::class, 'role_id');
+    }
 }
