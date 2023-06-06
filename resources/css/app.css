@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg1{
+    background-image: url('../../public/imgs/bg5.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no repeat;
+}
+.ams-logo{
+    width: 25rem;
+}
+
+.ams-logo-dash{
+    width: 5rem;
+}
+
+
