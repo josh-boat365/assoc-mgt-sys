@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face{
+    font-family: Quartzo;
+    src: url('../../public/fonts/QuartzoBold.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: Raleway;
+    src: url('../../public/fonts/Raleway-Medium.ttf') format('truetype');
+}
+*{
+    font-family: Raleway;
+
+}
+
+a, p, h1, h2, h3, h4, h5, h6, div, span{
+    color: rgb(31 41 55 / 1) !important;
+}
 .bg1{
     background-image: url('../../public/imgs/bg5.jpg');
     background-position: center;
@@ -11,6 +28,7 @@
 .ams-logo{
     width: 25rem;
 }
+
 
 .ams-logo-dash{
     width: 5rem;
