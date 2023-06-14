@@ -17,10 +17,33 @@
         @csrf
         @method('patch')
 
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        <div class="w-[20rem]">
+            <x-input-label for="firstname" :value="__('Association Number')" />
+            <x-text-input id="bar_number" name="bar_number" type="text" class="mt-1 block w-full" :value="old('bar_number', $user->bar_number)" autofocus autocomplete="bar_number" />
+            <x-input-error class="mt-2" :messages="$errors->get('bar_number')" />
+        </div>
+
+        <div class="flex res:flex-wrap gap-5 ">
+            <div class="w-[20rem]">
+                <x-input-label for="firstname" :value="__('Firstname')" />
+                <x-text-input id="firstname" name="firstname" type="text" class="mt-1 block w-full" :value="old('firstname', $user->firstname)" autofocus autocomplete="surname" />
+                <x-input-error class="mt-2" :messages="$errors->get('firstname')" />
+            </div>
+            <div class="w-[20rem]">
+                <x-input-label for="surname" :value="__('Surname')" />
+                <x-text-input id="surname" name="surname" type="text" class="mt-1 block w-full" :value="old('surname', $user->surname)" autofocus autocomplete="surname" />
+                <x-input-error class="mt-2" :messages="$errors->get('surname')" />
+            </div>
+            <div class="w-[20rem]">
+
+                <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
+                <select id="countries" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={{old('gender','$user->gender')}} autofocus autocomplete="gender">
+                    <option selected>---- Choose gender ----</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+                <x-input-error class="mt-2" :messages="$errors->get('gender')" />
+            </div>
         </div>
 
         <div>
@@ -29,21 +52,21 @@
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800">
-                        {{ __('Your email address is unverified.') }}
+            <div>
+                <p class="text-sm mt-2 text-gray-800">
+                    {{ __('Your email address is unverified.') }}
 
-                        <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{ __('Click here to re-send the verification email.') }}
-                        </button>
-                    </p>
+                    <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        {{ __('Click here to re-send the verification email.') }}
+                    </button>
+                </p>
 
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
-                    @endif
-                </div>
+                @if (session('status') === 'verification-link-sent')
+                <p class="mt-2 font-medium text-sm text-green-600">
+                    {{ __('A new verification link has been sent to your email address.') }}
+                </p>
+                @endif
+            </div>
             @endif
         </div>
 
@@ -51,13 +74,7 @@
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
+            <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600">{{ __('Saved.') }}</p>
             @endif
         </div>
     </form>
