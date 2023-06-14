@@ -48,7 +48,7 @@ class LoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                $this->input_type => 'auth.failed',
+                $this->input_type => 'Username/Email or password incorrect',
             ]);
         }
 
