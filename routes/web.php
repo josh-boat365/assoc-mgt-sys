@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [DashboardController::class, 'index'])->middleware(['verified'])->name('dashboard');
-    Route::get('/profile/settings', [DashboardController::class, 'settings'])->name('profile.settings');
+    Route::get('/profile/view', [DashboardController::class, 'profile_view'])->name('profile.view');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
