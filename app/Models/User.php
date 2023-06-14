@@ -61,7 +61,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function role(){
+    public function role()
+    {
         $this->has(Role::class, 'role_id');
     }
 }
