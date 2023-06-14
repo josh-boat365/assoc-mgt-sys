@@ -18,7 +18,8 @@ class DashboardController extends Controller
         return view('dashboard.home', compact(['AuthUser', 'text']));
     }
 
-    public function settings(){
-        return view('profile.settings');
+
+    public function profile_view(){
+        return view('profile.profile');
     }
 }
