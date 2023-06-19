@@ -1,6 +1,8 @@
 import './bootstrap';
 import 'flowbite';
 
+// import Tagify from '@yaireo/tagify';
+
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
@@ -17,3 +19,8 @@ let greet = timeNow >= 5 && timeNow < 12 ? "Good Morning!"
         : "Good Evening!";
 
 greetings.innerHTML = greet;
+
+
+// Tagify - Js
+var inputElement = document.querySelector('input[name="regions_of_company"]');
+new Tagify(inputElement);
