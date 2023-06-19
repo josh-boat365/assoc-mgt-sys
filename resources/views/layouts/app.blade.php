@@ -11,7 +11,11 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'public/fonts/fontawesome/css/all.min.css'])
+    @vite(['resources/css/app.css', 'public/fonts/fontawesome/css/all.min.css', 'resources/js/app.js'])
+
+   <!-- Metro UI  -->
+   <!-- <link rel="stylesheet" href="https://cdn.korzh.com/metroui/v4/css/metro-all.min.css"> -->
+
 </head>
 
 <body class="font-sans antialiased">
@@ -23,11 +27,14 @@
         </header> @endif
         <!-- Page Content -->
         <main> {{ $slot }} </main>
+        <!-- Footer  -->
         @include('layouts.footer')
     </div>
 
     <!-- Flowbite- JS  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/datepicker.min.js"></script>
+
 </body>
 
 </html>

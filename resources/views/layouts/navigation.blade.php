@@ -32,7 +32,7 @@
                                 </svg>
                             </div>
                             @else
-                            <img class="w-10 h-10 p-1 rounded-full " src="/docs/images/people/profile-picture-5.jpg" alt="Profile Image">
+                            <img class="w-10 h-10 p-1 rounded-full " src="{{ asset('images/'.Auth::user()->profile_image) }}" alt="Profile Image">
                             @endempty
 
 
@@ -48,7 +48,7 @@
                         <x-dropdown-link :href="route('dashboard')">
                             {{ __('Dashboard') }}
                         </x-dropdown-link>
-                        <x-dropdown-link :href="route('profile.edit')">
+                        <x-dropdown-link :href="route('profile.view')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
                         <x-dropdown-link :href="route('profile.edit')">
