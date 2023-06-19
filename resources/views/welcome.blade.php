@@ -33,6 +33,11 @@
                 </a>
             </div>
         </center>
+
+        <!-- Footer  -->
+        <div class="relative top-[14.5rem]">
+            @include('layouts.footer')
+        </div>
 </body>
 
 </html>

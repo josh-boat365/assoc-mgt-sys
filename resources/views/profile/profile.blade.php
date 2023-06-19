@@ -26,12 +26,22 @@
                         </div>
                         @else
                         <!-- <img class="w-10 h-10 p-1 rounded-full " src="/docs/images/people/profile-picture-5.jpg" alt="Profile Image"> -->
-                        <img class="rounded w-36 h-36" src="/docs/images/people/profile-picture-5.jpg" alt="Extra large avatar">
+                        <img class="rounded w-36 h-36" src="{{ asset('images/'.Auth::user()->profile_image) }}" alt="Extra large avatar">
                         @endempty
                     </div>
                     <div class="flex flex-col res:flex-wrap">
-                        <p class="font-bold text-[2rem]">Joshua Nyarko Boateng</p>
-                        <p><i class="fa-solid fa-map-location-dot"></i> &nbsp; Greater Accra</p>
+                        @empty(Auth::user()->firstname && Auth::user()->surname)
+                        <p class="font-bold text-[2rem]">-----</p>
+                        @else
+                        <p class="font-bold text-[2rem]">{{ Auth::user()->firstname }} {{ Auth::user()->surname}}</p>
+                        @endempty
+
+                        @empty(Auth::user()->region_of_company)
+                        <p>-----</p>
+                        @else
+                        <p><i class="fa-solid fa-map-location-dot"></i> &nbsp; {{Auth::user()->region_of_company}}</p>
+                        @endempty
+
                         <p><i class="fa-solid fa-envelope"></i> &nbsp; {{Auth::user()->email}}</p>
                         <p><i class="fa-solid fa-user"></i> &nbsp; {{Auth::user()->username}}</p>
 
@@ -46,9 +56,20 @@
 
 
                         <p>
-                            <span class="bg-green-500 border border-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full" style="color: white !important;">Dues paid</span>
-                            <span class="bg-red-500 border border-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full" style="color: white !important;">Dues not paid</span>
-                            </p>
+                            @if (Auth::user()->dues == "not-paid")
+                            <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                                <span class="w-2 h-2 mr-1 bg-red-500 rounded-full"></span>
+                                Dues not paid
+                            </span>
+                            @else
+                            <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
+                                Dues paid
+                            </span>
+                            @endif
+
+
+                        </p>
 
                     </div>
                 </div>
@@ -61,47 +82,85 @@
                     <div class="mt-2 flex gap-5 res:flex-wrap">
                         <div class="w-[30rem]">
                             <h4 class="font-bold">Association Number</h4>
-                            <p>1234</p>
+                            @empty(Auth::user()->assoc_number)
+                                 <p>-----</p>
+                            @else
+                             <p>{{Auth::user()->assoc_number}}</p>
+                            @endempty
+
+
                         </div>
                         <div class="w-[30rem]">
                             <h4 class="font-bold">Joined since</h4>
-                            <p>2005</p>
+                            @empty(Auth::user()->joined_year)
+                                 <p>-----</p>
+                            @else
+                             <p>{{Auth::user()->joined_year}}</p>
+                            @endempty
                         </div>
                     </div>
                     <div class="mt-2 flex gap-5 res:flex-wrap">
                         <div class="w-[30rem]">
                             <h4 class="font-bold">Date of Birth</h4>
-                            <p>14th August, 1999</p>
+                            @empty(Auth::user()->date_of_birth)
+                                 <p>-----</p>
+                            @else
+                             <p>{{Auth::user()->date_of_birth}}</p>
+                            @endempty
                         </div>
                         <div class="w-[30rem]">
                             <h4 class="font-bold">Gender</h4>
-                            <p>Male</p>
+                            @empty(Auth::user()->gender)
+                                 <p>-----</p>
+                            @else
+                             <p>{{Auth::user()->gender}}</p>
+                            @endempty
                         </div>
                     </div>
                     <div class="mt-2 flex gap-5 res:flex-wrap">
                         <div class="w-[30rem]">
                             <h4 class="font-bold">Tin</h4>
-                            <p>P0123456</p>
+                           @empty(Auth::user()->tin)
+                                 <p>-----</p>
+                            @else
+                             <p>{{Auth::user()->tin}}</p>
+                            @endempty
                         </div>
                         <div class="w-[30rem]">
                             <h4 class="font-bold">Status</h4>
-                            <p>Dues not paid</p>
+                            @empty(Auth::user()->dues)
+                                 <p>-----</p>
+                            @else
+                             <p>{{Auth::user()->dues}}</p>
+                            @endempty
                         </div>
                     </div>
                     <div class="mt-2 flex gap-5 res:flex-wrap">
                         <div class="w-[30rem]">
                             <h4 class="font-bold">Primary Contact</h4>
-                            <p>(+233) 0550746180</p>
+                            @empty(Auth::user()->primary_contact)
+                                 <p>-----</p>
+                            @else
+                             <p>(+233) {{Auth::user()->primary_contact}}</p>
+                            @endempty
                         </div>
                         <div class="w-[30rem]">
                             <h4 class="font-bold">Secondary Contact</h4>
-                            <p>---------</p>
+                            @empty(Auth::user()->secondary_contact)
+                                 <p>-----</p>
+                            @else
+                             <p>(+233) {{Auth::user()->secondary_contact}}</p>
+                            @endempty
                         </div>
                     </div>
                     <div class="mt-2 flex gap-5 res:flex-wrap">
                         <div class="w-[30rem]">
                             <h4 class="font-bold">Region</h4>
-                            <p>Greater Accra</p>
+                            @empty(Auth::user()->region_of_company)
+                                 <p>-----</p>
+                            @else
+                             <p>{{Auth::user()->region_of_company}}</p>
+                            @endempty
                         </div>
                         <div class="w-[30rem]">
                             <h4 class="font-bold">Areas of Specialty</h4>
@@ -115,11 +174,19 @@
                     <div class="mt-2 flex gap-5 res:flex-wrap">
                         <div class="w-[30rem]">
                             <h4 class="font-bold">Company Name</h4>
-                            <p>Integrisgh 360</p>
+                            @empty(Auth::user()->company_name)
+                                 <p>-----</p>
+                            @else
+                             <p>{{Auth::user()->company_name}}</p>
+                            @endempty
                         </div>
                         <div class="w-[30rem]">
                             <h4 class="font-bold">Company Address</h4>
-                            <p>5th Floor, No. 8 Blohum Street, Dzorwulu.</p>
+                            @empty(Auth::user()->company_address)
+                                 <p>-----</p>
+                            @else
+                             <p>{{Auth::user()->company_address}}</p>
+                            @endempty
                         </div>
                     </div>
                     <div class="mt-2 flex gap-5 res:flex-wrap">
