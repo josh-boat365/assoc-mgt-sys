@@ -22,20 +22,20 @@ class User extends Authenticatable
         'surname',
         'username',
         'email',
-        'bar_number',
-        'card_serial_number',
+        'assoc_number',
+        // 'card_serial_number',
         'date_of_birth',
         'gender',
         'tin',
-        'chamber_name',
-        'chamber_address',
+        'company_name',
+        'company_address',
         'profile_image',
         'primary_contact',
         'secondary_contact',
         'academic_qualification',
-        'practice_region',
-        'practice_areas',
-        'practice_regions',
+        'region_of_company',
+        // 'area_of_interests',
+        // 'regions_of_company',
         'role',
         'status',
         'password',
@@ -61,8 +61,5 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function role()
-    {
-        $this->has(Role::class, 'role_id');
-    }
+
 }
