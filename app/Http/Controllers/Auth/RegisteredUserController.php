@@ -33,9 +33,9 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'bar_number' => ['required', 'integer', 'min:4', 'unique:'.User::class],
-            'username' => ['required', 'string', 'min:6', 'max:12','unique:'.User::class],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'assoc_number' => ['required', 'integer', 'min:4', 'unique:' . User::class],
+            'username' => ['required', 'string', 'min:6', 'max:12', 'unique:' . User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -65,7 +65,7 @@ class RegisteredUserController extends Controller
         EOD;
 
         $user = User::create([
-            'bar_number' => $request->bar_number,
+            'assoc_number' => $request->assoc_number,
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -73,7 +73,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        $this->sendmail($email,$body_of_mail);
+        $this->sendmail($email, $body_of_mail);
 
         Auth::login($user);
 
