@@ -27,6 +27,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home/resources', [DashboardController::class, 'resources_view'])->name('resources.view');
     Route::get('/home/chats', [DashboardController::class, 'chats_view'])->name('chats.view');
     Route::get('/home/shop', [DashboardController::class, 'shop_view'])->name('shop.view');
+    //  composer require laravel/breeze --dev
+
     Route::get('/home/dues-receipt', [DashboardController::class, 'dues_receipt_view'])->name('dues.receipt.view');
     Route::get('/profile/view', [DashboardController::class, 'profile_view'])->name('profile.view');
 
