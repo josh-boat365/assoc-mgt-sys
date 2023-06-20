@@ -11,6 +11,10 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <script src="{{asset('js/app.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('fonts/fontawesome/css/all.min.css')}}">
 </head>
 
 <body class="">
@@ -20,8 +24,7 @@
             <center>
                 <p class="text-center font-bold font-quartzo text-[2rem] text-gray-900">Welcome</p>
                 <img class="ams-logo" src="{{ asset('imgs/ams-logo-full.png') }}" alt="AMS Logo">
-                <p class="text-center text-gray-900">This portal grants access to only <span
-                        class="font-bold">Association Members</span>
+                <p class="text-center text-gray-900">This portal grants access to only <span class="font-bold">Association Members</span>
                 </p>
             </center>
         </div>
