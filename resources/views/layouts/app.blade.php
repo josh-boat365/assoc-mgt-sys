@@ -12,10 +12,10 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'public/fonts/fontawesome/css/all.min.css', 'resources/js/app.js'])
-    
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <script src="{{asset('js/app.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('fonts/fontawesome/css/all.min.css')}}">
+
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{ asset('js/app.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('fonts/fontawesome/css/all.min.css') }}">
 
     <!-- Metro UI  -->
     <!-- <link rel="stylesheet" href="https://cdn.korzh.com/metroui/v4/css/metro-all.min.css"> -->
