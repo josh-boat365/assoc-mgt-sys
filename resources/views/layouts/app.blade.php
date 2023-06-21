@@ -11,16 +11,8 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <!-- Scripts -->
-    @vite(['resources/css/app.css'])
-    @vite([ 'resources/js/app.js'])
-    @vite(['public/fonts/fontawesome/css/all.min.css'])
+    @vite(['resources/css/app.css','public/fonts/fontawesome/css/all.min.css','resources/js/app.js'])
 
-   <!-- <link rel="stylesheet" href="../../../resources/css/app.css">
-    <script src="../../../resources/js/js.css"></script>
-    <link rel="stylesheet" href="../../../public/fonts/fontawesome/css/all.min.css"> -->
-
-    <!-- Metro UI  -->
-    <!-- <link rel="stylesheet" href="https://cdn.korzh.com/metroui/v4/css/metro-all.min.css"> -->
 
 </head>
 
