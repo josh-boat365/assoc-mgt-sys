@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use App\Providers\RouteServiceProvider;
+use App\Http\Requests\Auth\LoginRequest;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -23,15 +24,34 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request)
     {
 
         $request->authenticate();
 
         $request->session()->regenerate();
 
+        $superAdmin = 1;
+        $associateAdmin = 2;
+        $juniorAdmin = 3;
+        $primaryUser = 4;
+
+         if (Auth::check()) {
+            $role = Auth::user()->role;
+
+            if ($role == $superAdmin) {
+                return redirect()->route('admin.home');
+                // return $next($request);
+            } else {
+                return redirect()->route('user.home');
+            }
+        }
+
+        return redirect()->back()->with('status', "You don't have access to this application");
+
+
         // return redirect()->intended(RouteServiceProvider::HOME);
-         return redirect()->route('dashboard');
+        //  return redirect()->route('admin.home');
     }
 
     /**
@@ -47,4 +67,8 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
+    //  protected function userIs($roleType){
+    //     User::where('role',$roleType);
+    // }
 }
