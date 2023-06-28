@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -17,17 +18,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', [DashboardController::class, 'index'])->middleware(['verified'])->name('dashboard');
+
+    // Route::middleware(['user.type'])->group(function (){
+    //user route
+    Route::get('user/home', [DashboardController::class, 'index'])->middleware(['verified'])->name('user.home');
+    //admin route
+    Route::get('admin/home', [AdminController::class, 'index'])->middleware(['verified'])->name('admin.home');
+
+
+    // });
+
+
+
     Route::get('/home/dues', [DashboardController::class, 'dues_view'])->name('dues.view');
     Route::get('/home/conference', [DashboardController::class, 'conference_view'])->name('conference.view');
     Route::get('/home/resources', [DashboardController::class, 'resources_view'])->name('resources.view');
     Route::get('/home/chats', [DashboardController::class, 'chats_view'])->name('chats.view');
     Route::get('/home/shop', [DashboardController::class, 'shop_view'])->name('shop.view');
-    //  composer require laravel/breeze --dev
+
 
     Route::get('/home/dues-receipt', [DashboardController::class, 'dues_receipt_view'])->name('dues.receipt.view');
     Route::get('/profile/view', [DashboardController::class, 'profile_view'])->name('profile.view');
