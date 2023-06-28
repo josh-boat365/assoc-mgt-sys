@@ -21,6 +21,4 @@ let greet = timeNow >= 5 && timeNow < 12 ? "Good Morning!"
 greetings.innerHTML = greet;
 
 
-// Tagify - Js
-var inputElement = document.querySelector('input[name="regions_of_company"]');
-new Tagify(inputElement);
+
