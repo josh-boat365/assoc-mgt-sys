@@ -11,50 +11,68 @@ class DashboardController extends Controller
     public function index()
     {
 
+         //kick out unauthorized users
+        if (Auth::check()) {
+            $user = Auth::user();
+            $role = $user->role;
+
+            $primaryUser = 4;
+
+
+            if($role != $primaryUser){
+                return redirect('/login');
+            }
+
+        }
+
         $user_id = Auth::id();
         $AuthUser = User::where('id', $user_id);
         // dd($AuthUser);
         $text = "Kindly take note! You would have to pay your monthly dues to be able to have full access to this application.";
 
-        return view('dashboard.home', compact(['AuthUser', 'text']));
+        return view('user.home', compact(['AuthUser', 'text']));
     }
 
 
     public function profile_view()
     {
-        return view('profile.profile');
+        $userInterests = explode(',',Auth::user()->area_of_interests );
+
+        $academicQualifications = explode(',',Auth::user()->academic_qualification);
+
+        return view('profile.profile', compact(['userInterests', 'academicQualifications']));
     }
 
     public function dues_view()
     {
-        return view('dashboard.dues');
+        return view('user.dues');
     }
 
     public function conference_view()
     {
-        return view('dashboard.conference');
+        return view('user.conference');
     }
 
 
     public function resources_view()
     {
-        return view('dashboard.resources');
+        return view('user.resources');
     }
 
 
     public function chats_view()
     {
-        return view('dashboard.chats');
+        return view('user.chats');
     }
 
 
     public function shop_view()
     {
-        return view('dashboard.shop');
+        return view('user.shop');
     }
 
     public function dues_receipt_view()
     {
-        return view('dashboard.dues-receipt');
+        return view('user.dues-receipt');
     }
 }
