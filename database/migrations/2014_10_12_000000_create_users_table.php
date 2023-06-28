@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('firstname')->nullable();
             $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->integer('assoc_number')->unique();
+            $table->string('association_id', 6)->unique();
             $table->integer('joined_year')->nullable();
             // $table->integer('card_serial_number')->unique()->nullable();
             $table->string('date_of_birth')->nullable();
@@ -35,7 +35,7 @@ return new class extends Migration
             // $table->string('regions_of_company')->nullable();
             // $table->string('onboard_date')->nullable();
             $table->string('dues')->default('not-paid');
-            $table->tinyInteger('role')->default(4); //[1]super admin, //[2]associate admin //[3]junior admin //[4]lawyer - by default
+            $table->integer('role'); //[1]super admin, //[2]associate admin //[3]junior admin //[4]User - by default
             $table->boolean('is_approved')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
