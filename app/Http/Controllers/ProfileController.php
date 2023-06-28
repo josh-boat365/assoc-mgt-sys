@@ -51,7 +51,7 @@ class ProfileController extends Controller
         // dd($request);
 
         $request->validate([
-            'assoc_number' => ['integer', 'min:4'],
+            'association_id' => ['string', 'min:4'],
             'firstname' => ['string', 'max:255'],
             'surname' => ['string', 'max:255'],
             'username' => ['string', 'min:6', 'max:12'],
@@ -67,7 +67,7 @@ class ProfileController extends Controller
             'company_address' => ['string', 'max:255'],
             'primary_contact' => ['string', 'min:10', 'max:10'],
             'secondary_contact' => ['string', 'min:10', 'max:10'],
-            'onboard_date' => ['integer'],
+            // 'onboard_date' => ['integer'],
             'academic_qualification' => ['string', 'max:255'],
         ]);
         // $request->user()->fill($request->validate());
@@ -77,12 +77,22 @@ class ProfileController extends Controller
         // $image_ext = $request->profile_image->getClientOriginalExtension();
         //get current date
         // $date = date('Y-m-d');
-        // $image_name = $request->assoc_number . '_' . $date .  '.' . $image_ext;
+        // $image_name = $request->association_id . '_' . $date .  '.' . $image_ext;
         //save image to public/images folder
         // $request->profile_image->move(public_path('images'),$image_name);
 
+        //check if at least one input field is filled then update form
+        // $association_id = $request->association_id;
+
+        if(
+            !empty($request->firstname) ||  !empty($request->surname) || !empty($request->username) || !empty($request->email) ||
+            !empty($request->gender) || !empty($request->tin) || !empty($request->company_name) || !empty($request->company_address) || !empty($request->date_of_birth) ||
+            !empty($request->region_of_company) || !empty($request->area_of_interests) || !empty($request->primary_contact) || !empty($request->secondary_contact) || !empty($request->academic_qualification)
+        ){
         User::find($user->id)->update($request->all());
         $request->user()->save();
+
+        }
 
         return Redirect::route('profile.edit')->with('status', 'Account profile updated successfully');
     }

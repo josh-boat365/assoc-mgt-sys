@@ -16,7 +16,7 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'assoc_number' => ['integer', 'min:4'],
+            'association_id' => ['integer', 'min:4'],
             'profile_image' => ['image', 'mimes:png,jpg,jpeg', 'max:5048'],
             'firstname' => ['string', 'max:255'],
             'surname' => ['string', 'max:255'],

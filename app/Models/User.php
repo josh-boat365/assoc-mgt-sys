@@ -22,7 +22,7 @@ class User extends Authenticatable
         'surname',
         'username',
         'email',
-        'assoc_number',
+        'association_id',
         // 'card_serial_number',
         'date_of_birth',
         'gender',
@@ -34,7 +34,7 @@ class User extends Authenticatable
         'secondary_contact',
         'academic_qualification',
         'region_of_company',
-        // 'area_of_interests',
+        'area_of_interests',
         // 'regions_of_company',
         'role',
         'status',
@@ -60,6 +60,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-
 }

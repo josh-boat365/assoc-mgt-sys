@@ -1,14 +1,17 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}"> @csrf
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data"> @csrf
         <!-- Bar number -->
+        <input type="hidden" name="role" value="4">
         <div>
-            <x-input-label for="name" :value="__('Association Number')" />
-            <x-text-input id="assoc_number" class="block mt-1 mb-2 w-full placeholder:text-gray-300" type="text" name="assoc_number" :value="old('assoc_number')" autofocus autocomplete="assoc_number" placeholder="Enter association number eg:(0000)" />
-            <x-input-error :messages="$errors->get('assoc_number')" class="mt-2" />
+            <x-input-label for="name" :value="__('Association ID')" />
+            <span class="relative text-gray-300 text-[0.6rem]">Can contain only letters and numbers</span>
+            <x-text-input id="association_id" class="block mt-1 mb-2 w-full placeholder:text-gray-300" type="text" name="association_id" :value="old('association_id')" autofocus autocomplete="association_id" placeholder="Enter association number eg:(ABC123)" />
+            <x-input-error :messages="$errors->get('association_id')" class="mt-2" />
         </div>
         <!-- Username -->
         <div>
             <x-input-label for="name" :value="__('Username')" />
+            <span class="relative text-gray-300 text-[0.6rem]">Can contain only letters and numbers</span>
             <x-text-input id="username" class="block mt-1 w-full placeholder:text-gray-300" type="text" name="username" :value="old('username')" autofocus autocomplete="username" placeholder="Enter Username eg: member123" />
             <x-input-error :messages="$errors->get('username')" class="mt-2" />
         </div>

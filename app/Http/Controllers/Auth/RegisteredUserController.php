@@ -33,11 +33,13 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'assoc_number' => ['required', 'integer', 'min:4', 'unique:' . User::class],
+            'role' => ['required', 'integer'],
+            'association_id' => ['required', 'string', 'min:4', 'max:6', 'unique:' . User::class],
             'username' => ['required', 'string', 'min:6', 'max:12', 'unique:' . User::class],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        // dd($request);
 
         $username = $request->username;
         $email = $request->email;
@@ -65,19 +67,20 @@ class RegisteredUserController extends Controller
         EOD;
 
         $user = User::create([
-            'assoc_number' => $request->assoc_number,
+            'association_id' => $request->association_id,
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role
         ]);
 
         event(new Registered($user));
 
         $this->sendmail($email, $body_of_mail);
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('login')->with('status', "Account created successfully");
         // return redirect()->back()->with('success','Thanks for registering, your account will be approved within 24hrs.Check your email afterwards.');
     }
 

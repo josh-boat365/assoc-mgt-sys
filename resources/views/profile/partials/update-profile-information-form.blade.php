@@ -5,8 +5,9 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+            Update your account's profile information and email address.
         </p>
+        <span style="color: red !important;" class="text-xs relative top-[-0.5rem]">Note profile information must be fully updated.</span>
     </header>
 
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
@@ -20,8 +21,8 @@
         <div class="flex res:flex-wrap gap-5">
             <div class="w-[20rem]">
                 <x-input-label for="firstname" :value="__('Association Number  *')" />
-                <x-text-input id="assoc_number" readonly name="assoc_number" type="text" class="mt-1 block w-full" :value="old('assoc_number', $user->assoc_number)" autofocus autocomplete="assoc_number" />
-                <x-input-error class="mt-2" :messages="$errors->get('assoc_number')" />
+                <x-text-input id="association_id" readonly name="association_id" type="text" class="mt-1 block w-full" :value="old('association_id', $user->association_id)" autofocus autocomplete="association_id" />
+                <x-input-error class="mt-2" :messages="$errors->get('association_id')" />
             </div>
             <!-- <div class="w-[20rem]">
                 <x-input-label for="profile_image" :value="__('Profile Image *')" />
@@ -45,10 +46,10 @@
             <div class="w-[20rem]">
 
                 <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender *</label>
-                <select id="gender" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" value={{old('gender','$user->gender')}} autofocus autocomplete="gender">
+                <select id="gender" name="gender" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" value={{old('gender','$user->gender')}} autofocus autocomplete="gender">
                     <option selected>---- Choose gender ----</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
+                    <option value="Male" @if( $user->gender == 'Male') selected @endif>Male</option>
+                    <option value="Female" @if($user->gender == 'Female') selected @endif>Female</option>
                 </select>
                 <x-input-error class="mt-2" :messages="$errors->get('gender')" />
             </div>
@@ -63,7 +64,7 @@
             </div>
             <div class="w-[20rem]">
                 <x-input-label for="email" :value="__('Email *')" />
-                <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)"  autocomplete="username" />
+                <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" autocomplete="username" />
                 <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
                 @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
@@ -100,10 +101,10 @@
             </div>
             <div class="w-[30.5rem]">
                 <x-input-label for="region_of_company" :value="__('Region  *')" />
-                <select id="region_of_company" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" value={{old('region_of_company','$user->region_of_company')}} autofocus autocomplete="region_of_company">
+                <select id="region_of_company" name="region_of_company" class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" autofocus autocomplete="region_of_company">
                     <option selected>---- Choose region ----</option>
                     @foreach ($regions as $region)
-                    <option value="{{old('region_of_company',$region)}}">{{ old('region_of_company',$region)}}</option>
+                    <option value="{{$region}}" @if($user->region_of_company === old('region_of_company', $region)) selected @endif>{{ $region}}</option>
                     @endforeach
 
                 </select>
@@ -130,26 +131,27 @@
         </div>
         <div class="flex res:flex-wrap gap-5 ">
             <div class="w-[30.5rem]">
-                <x-input-label for="regions_of_company" :value="__('Primary contact *')" />
-                <x-text-input id="regions_of_company" name="regions_of_company" type="tel" class="mt-1 block w-full" :value="old('regions_of_company', $user->regions_of_company)" autofocus autocomplete="regions_of_company" />
-                <x-input-error class="mt-2" :messages="$errors->get('regions_of_company')" />
+                <x-input-label for="primary_contact" :value="__('Primary contact *')" />
+                <x-text-input id="primary_contact" name="primary_contact" type="tel" class="mt-1 block w-full" :value="old('primary_contact', $user->primary_contact)" autofocus autocomplete="primary_contact" />
+                <x-input-error class="mt-2" :messages="$errors->get('primary_contact')" />
             </div>
             <div class="w-[30.5rem]">
-                <x-input-label for="area_of_interests" :value="__('Secondary contact')" />
-                <x-text-input id="area_of_interests" name="area_of_interests" type="tel" class="mt-1 block w-full" :value="old('area_of_interests', $user->area_of_interests)" autofocus autocomplete="area_of_interests" />
-                <x-input-error class="mt-2" :messages="$errors->get('area_of_interests')" />
+                <x-input-label for="secondary_contact" :value="__('Secondary contact')" />
+                <x-text-input id="secondary_contact" name="secondary_contact" type="tel" class="mt-1 block w-full" :value="old('secondary_contact', $user->secondary_contact)" autofocus autocomplete="secondary_contact" />
+                <x-input-error class="mt-2" :messages="$errors->get('secondary_contact')" />
             </div>
 
         </div>
         <div class="flex res:flex-wrap gap-5 ">
-            <div class="w-[30.5rem]">
-                <x-input-label for="regions_of_company" :value="__('Other Company Branches')" />
-                <x-text-input id="regions_of_company" name="regions_of_company" type="text" class="mt-1 block w-full" :value="old('regions_of_company', $user->regions_of_company)" autofocus autocomplete="regions_of_company" />
-                <x-input-error class="mt-2" :messages="$errors->get('regions_of_company')" />
-            </div>
-            <div class="w-[30.5rem]">
+            <!-- <div class="w-[30.5rem]">
+                <x-input-label for="primary_contact" :value="__('Other Company Branches')" />
+                <x-text-input id="primary_contact" name="primary_contact" type="text" class="mt-1 block w-full" :value="old('primary_contact', $user->primary_contact)" autofocus autocomplete="primary_contact" />
+                <x-input-error class="mt-2" :messages="$errors->get('primary_contact')" />
+            </div> -->
+            <div class="w-[62rem]">
                 <x-input-label for="area_of_interests" :value="__('Interests')" />
-                <x-text-input id="area_of_interests" name="area_of_interests" type="text" class="mt-1 block w-full" :value="old('area_of_interests', $user->area_of_interests)" autofocus autocomplete="area_of_interests" />
+                <span style="color: red !important;" class="text-xs">Multiple interests should be separated by a comma(,).</span>
+                <x-text-input id="area_of_interests" name="area_of_interests" type="text" class="mt-0 block w-full" :value="old('area_of_interests', $user->area_of_interests)" autofocus autocomplete="area_of_interests" />
                 <x-input-error class="mt-2" :messages="$errors->get('area_of_interests')" />
             </div>
 
@@ -171,9 +173,10 @@
             </div>
         </div> -->
 
-        <div class="w-[60.5rem]">
-            <x-input-label for="academic_qualification" :value="__('Academic Qualification')" />
-            <x-text-input id="academic_qualification" name="academic_qualification" type="text" class="mt-1 block w-full" :value="old('academic_qualification', $user->academic_qualification)" autofocus autocomplete="academic_qualification" />
+        <div class="w-[62rem]">
+            <x-input-label for="academic_qualification" :value="__('Academic Qualifications')" />
+            <span style="color: red !important;" class="text-xs">Multiple qualifications should be separated by a comma(,).</span>
+            <x-text-input id="academic_qualification" name="academic_qualification" type="text" class="mt-0 block w-full" :value="old('academic_qualification', $user->academic_qualification)" autofocus autocomplete="academic_qualification" />
             <x-input-error class="mt-2" :messages="$errors->get('academic_qualification')" />
         </div>
 
