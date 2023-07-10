@@ -78,7 +78,7 @@
                                         <!-- paid -->
                                     </td>
                                     <td class="px-6 py-4">
-                                        <!-- <p class="font-bold">Ghs 2,000.00</p> -->
+                                        <p class="font-thin">Ghs 2,000.00</p>
                                     </td>
 
                                 </tr>
