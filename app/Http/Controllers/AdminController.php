@@ -102,4 +102,7 @@ class AdminController extends Controller
 
         Mail::to($email)->send(new SendMail($mailData));
     }
+
+
+
 }
