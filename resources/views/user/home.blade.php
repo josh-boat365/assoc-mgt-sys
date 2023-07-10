@@ -15,7 +15,15 @@
             @endempty
 
 
-            <p>{{$text}}</p>
+            <p>Kindly take note! You would have to pay your monthly <a href="{{ route('dues.view') }}" class="hover:text-red-600 hover:underline" @style(['color: red !important'])>dues</a>  to be able to have full <a href="{{ route('profile.view') }}" class="hover:text-red-600 hover:underline" @style(['color: red !important'])>access</a> to this application.</p>
+        </div>
+
+        <div class="mt-3 max-w-3xl m-auto">
+
+            <x-auth-session-status class="mb-5" :status="session('status')" />
+            <x-success-message class="mb-5" :success="session('success')" />
+            <x-error-message class="mb-5" :fail="session('fail')" />
+
         </div>
 
 
@@ -34,7 +42,7 @@
 
                     <x-card href="{{route('dues.view')}}" class="w-[12rem] text-center border-t-4 rounded border-yellow-400">
                         <i class="fa-solid fa-money-bill fa-2xxl"></i>
-                         <p class="text-[0.8rem]">
+                        <p class="text-[0.8rem]">
                             Click on dues tab to pay your monthly dues. <span class="text-[0.7rem]" style="color: orange !important;">Payment ensures full access to this platform.</span>
                         </p>
                         <p class="text-[1.5rem] font-semi-bold">Dues</p>
