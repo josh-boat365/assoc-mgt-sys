@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DuesController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ResourcesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,22 +25,29 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
 
-    // Route::middleware(['user.type'])->group(function (){
-    //user route
-    Route::get('user/home', [DashboardController::class, 'index'])->middleware(['verified'])->name('user.home');
     //admin route
     Route::get('admin/home', [AdminController::class, 'index'])->middleware(['verified'])->name('admin.home');
+    Route::get('admin/home/resources', [ResourcesController::class, 'resources_view'])->name('admin.resources');
+    Route::get('admin/home/resources-table', [ResourcesController::class, 'resources_table'])->name('admin.resources.table');
+    Route::post('admin/home/resources-table', [ResourcesController::class, 'add_resource'])->name('add.resource');
 
 
-    // });
-
-
-
+    //user route
+    Route::get('user/home', [DashboardController::class, 'index'])->middleware(['verified'])->name('user.home');
     Route::get('/home/dues', [DashboardController::class, 'dues_view'])->name('dues.view');
-    Route::get('/home/conference', [DashboardController::class, 'conference_view'])->name('conference.view');
-    Route::get('/home/resources', [DashboardController::class, 'resources_view'])->name('resources.view');
-    Route::get('/home/chats', [DashboardController::class, 'chats_view'])->name('chats.view');
-    Route::get('/home/shop', [DashboardController::class, 'shop_view'])->name('shop.view');
+
+    Route::get('/home/dues/pay', [DuesController::class, 'pay_view'])->name('dues.pay.view');
+    Route::get('/home/dues/pay/verify/{reference}', [DuesController::class, 'verify_payment'])->name('dues.verify');
+    Route::post('/home/dues/pay/payment-details', [DuesController::class, 'get_payment_details'])->name('get.payment.details');
+    Route::get('/home/dues/records', [DuesController::class, 'pay_view'])->name('dues.records');
+
+
+
+
+    Route::get('/home/conference', [DashboardController::class, 'conference_view'])->middleware(['check.dues'])->name('conference.view');
+    Route::get('/home/resources', [DashboardController::class, 'resources_view'])->middleware(['check.dues'])->name('resources.view');
+    Route::get('/home/chats', [DashboardController::class, 'chats_view'])->middleware(['check.dues'])->name('chats.view');
+    Route::get('/home/shop', [DashboardController::class, 'shop_view'])->middleware(['check.dues'])->name('shop.view');
 
 
     Route::get('/home/dues-receipt', [DashboardController::class, 'dues_receipt_view'])->name('dues.receipt.view');

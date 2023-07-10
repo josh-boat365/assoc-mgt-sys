@@ -11,7 +11,15 @@
         </a>
     </div>
 
-    <h2 class=" text-[2rem] text-center">Receipt Details</h2>
+    <h2 class=" text-[2rem] text-center">Invoice Details - Dues Payment</h2>
+
+    <div class="mt-3 max-w-3xl m-auto">
+
+        <x-auth-session-status class="mb-5" :status="session('status')" />
+        <x-success-message class="mb-5" :success="session('success')" />
+        <x-error-message class="mb-5" :fail="session('fail')" />
+
+    </div>
 
     <div class="py-12">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
@@ -23,7 +31,7 @@
                             <img class="w-[20rem]" src="{{asset('imgs/ams-logo-full.png')}}" alt="">
                         </div>
                         <div>
-                            <p class="font-bold">Receipt</p>
+                            <p class="font-bold">Invoice</p>
                             <p>23 June, 2023</p>
                             <p># Ams23456</p>
                         </div>
@@ -39,8 +47,7 @@
                         </div>
                         <div>
                             <p>TO:</p>
-                            <p class="font-bold">{{Auth::user()->firstname}} {{Auth::user()->surname}}</p>
-                            <p># Ams23456</p>
+                            <p class="font-bold">{{Auth::user()->firstname}} {{Auth::user()->surname}} </p>
                         </div>
                     </div>
 
@@ -97,9 +104,72 @@
                                     </td>
 
                                 </tr>
-
                             </tbody>
                         </table>
+                        <form id="paymentForm" action="#" method="post">
+                            @csrf
+                            <input type="hidden" name="association_id" value="{{Auth::user()->association_id}}">
+                            <input type="hidden" id="email" name="email" value="{{Auth::user()->email}}">
+                            <input type="hidden" id="amount" name="amount" value="2000">
+                            <div class="mt-5 relative float-right">
+
+                                <x-green-button class="ml-4" onclick="payWithPaystack(event)"> {{ __('Pay Annual Dues') }} </x-green-button>
+
+                            </div>
+
+                        </form>
+                        <script src="https://js.paystack.co/v1/inline.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+                        <script>
+                            const paymentForm = document.getElementById('paymentForm');
+                            paymentForm.addEventListener("submit", payWithPaystack, false);
+
+                            function payWithPaystack(e) {
+                                e.preventDefault();
+
+                                let handler = PaystackPop.setup({
+                                    key: '{!!  $ps_pk !!}', // Replace with your public key
+                                    email: document.getElementById("email").value,
+                                    amount: document.getElementById("amount").value * 100,
+                                    currency: 'GHS',
+                                    ref: '' + Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+                                    // label: "Optional string that replaces customer email"
+                                    onClose: function() {
+                                        alert('Window closed.');
+                                    },
+                                    callback: function(response) {
+                                        let reference = response.reference;
+                                        //    console.log(reference);
+                                        $.ajaxSetup({
+                                            headers: {
+                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                            }
+                                        });
+                                        $.ajax({
+                                            type: "GET",
+                                            url: "{{URL::to('home/dues/pay/verify')}}/" + reference,
+                                            success: function(response) {
+                                                // $.ajax({
+                                                //     url: "{{ route('get.payment.details') }}",
+                                                //     type: "POST",
+                                                //     data: {
+                                                //         data: response
+                                                //     }
+                                                // });
+                                                console.log(response);
+                                            },
+                                            error: function(xhr, status, error) {
+                                                console.log(error);
+                                            }
+
+                                        });
+
+                                    }
+                                });
+
+                                handler.openIframe();
+                            }
+                        </script>
                     </div>
 
 

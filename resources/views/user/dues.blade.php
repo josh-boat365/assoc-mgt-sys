@@ -68,59 +68,7 @@
                                     </td>
                                     <td class="px-6 py-4 text-right">
                                         <!-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> -->
-                                        <a href="#">
-                                            <x-green-button class="ml-4"> {{ __('Make Payment') }} </x-green-button>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 ">
-                                    <th scope="row" class=" py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        3
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        2022/2023 Association Dues
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        not-paid
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <!-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> -->
-                                        <a href="{#">
-                                            <x-green-button class="ml-4"> {{ __('Make Payment') }} </x-green-button>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 ">
-                                    <th scope="row" class=" py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        4
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        2023/2024 Association Dues
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        not-paid
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <!-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> -->
-                                        <a href="{#">
-                                            <x-green-button class="ml-4"> {{ __('Make Payment') }} </x-green-button>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 ">
-                                    <th scope="row" class=" py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        5
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        2022/2023 Association Dues
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        not-paid
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <!-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> -->
-                                        <a href="{#">
+                                        <a href="{{route('dues.pay.view')}}">
                                             <x-green-button class="ml-4"> {{ __('Make Payment') }} </x-green-button>
                                         </a>
                                     </td>

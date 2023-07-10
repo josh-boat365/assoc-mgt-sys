@@ -28,9 +28,8 @@ class DashboardController extends Controller
         $user_id = Auth::id();
         $AuthUser = User::where('id', $user_id);
         // dd($AuthUser);
-        $text = "Kindly take note! You would have to pay your monthly dues to be able to have full access to this application.";
 
-        return view('user.home', compact(['AuthUser', 'text']));
+        return view('user.home', compact(['AuthUser']));
     }
 
 

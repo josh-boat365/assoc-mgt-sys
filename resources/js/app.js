@@ -18,7 +18,8 @@ let greet = timeNow >= 5 && timeNow < 12 ? "Good Morning!"
     : timeNow >= 12 && timeNow < 18 ? "Good Afteroon!"
         : "Good Evening!";
 
-greetings.innerHTML = greet;
+greetings.innerHTML += greet;
+
 
 
 
