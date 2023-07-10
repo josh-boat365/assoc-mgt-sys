@@ -10,15 +10,20 @@
                     </a>
                 </div>
 
-                @if(URL::current() == route('admin.home'))
+                @if(Auth::check())
+                @if (Auth::user()->role == 1)
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('admin.home')" :active="request()->routeIs('dashboard')">
                         User List
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.resources')" :active="request()->routeIs('admin.resources')">
+                        Resources
+                    </x-nav-link>
                 </div>
                 @else
                 <div></div>
+                @endif
                 @endif
             </div>
 
