@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminRegister;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -40,19 +41,13 @@ class AdminController extends Controller
         return view('auth.register-admin');
     }
 
-    public function register_admin(Request $request)
+    public function register_admin(AdminRegister $request)
     {
 
-        $request->validate([
-            'role' => ['required', 'integer'],
-            'association_id' => ['required', 'string', 'min:4', 'max:6', 'unique:' . User::class],
-            'username' => ['required', 'string', 'min:6', 'max:12', 'unique:' . User::class],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-        // dd($request);
+        $request->validated();
         $username = $request->username;
         $email = $request->email;
+        // dd($request);
 
         $body_of_mail = <<<EOD
         <p>
@@ -88,9 +83,9 @@ class AdminController extends Controller
 
         $this->sendmail($email, $body_of_mail);
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect(RouteServiceProvider::ADMIN_HOME);
+        return redirect()->route('admin.home')->with('status','Account created successful login');
     }
 
     public function sendmail($email, $body)
