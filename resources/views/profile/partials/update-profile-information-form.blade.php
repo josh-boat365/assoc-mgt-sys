@@ -35,12 +35,12 @@
         <div class="flex res:flex-wrap gap-5 ">
             <div class="w-[20rem]">
                 <x-input-label for="firstname" :value="__('Firstname *')" />
-                <x-text-input id="firstname" name="firstname" type="text" class="mt-1 block w-full" :value="old('firstname', $user->firstname)" autofocus autocomplete="firstname" />
+                <x-text-input id="firstname" name="firstname" type="text" class="mt-1 block w-full" :value="old('firstname', $user->firstname)" placeholder="Kwabena" autofocus autocomplete="firstname" />
                 <x-input-error class="mt-2" :messages="$errors->get('firstname')" />
             </div>
             <div class="w-[20rem]">
                 <x-input-label for="surname" :value="__('Surname *')" />
-                <x-text-input id="surname" name="surname" type="text" class="mt-1 block w-full" :value="old('surname', $user->surname)" autofocus autocomplete="surname" />
+                <x-text-input id="surname" name="surname" type="text" class="mt-1 block w-full" :value="old('surname', $user->surname)" placeholder="Gatuso" autofocus autocomplete="surname" />
                 <x-input-error class="mt-2" :messages="$errors->get('surname')" />
             </div>
             <div class="w-[20rem]">
@@ -87,7 +87,7 @@
             </div>
             <div class="w-[20rem]">
                 <x-input-label for="tin" :value="__('Tin *')" />
-                <x-text-input id="tin" name="tin" type="text" class="mt-1 block w-full" :value="old('tin', $user->tin)" autofocus autocomplete="tin" />
+                <x-text-input id="tin" name="tin" type="text" class="mt-1 block w-full" :value="old('tin', $user->tin)" placeholder="P000000" autofocus autocomplete="tin" />
                 <x-input-error class="mt-2" :messages="$errors->get('tin')" />
             </div>
         </div>
@@ -151,7 +151,7 @@
             <div class="w-[62rem]">
                 <x-input-label for="area_of_interests" :value="__('Interests')" />
                 <span style="color: red !important;" class="text-xs">Multiple interests should be separated by a comma(,).</span>
-                <x-text-input id="area_of_interests" name="area_of_interests" type="text" class="mt-0 block w-full" :value="old('area_of_interests', $user->area_of_interests)" autofocus autocomplete="area_of_interests" />
+                <x-text-input id="area_of_interests" name="area_of_interests" type="text" class="mt-0 block w-full" :value="old('area_of_interests', $user->area_of_interests)" placeholder="Software Engineering, Fishing, Movies, Leadership" autofocus autocomplete="area_of_interests" />
                 <x-input-error class="mt-2" :messages="$errors->get('area_of_interests')" />
             </div>
 
@@ -176,7 +176,7 @@
         <div class="w-[62rem]">
             <x-input-label for="academic_qualification" :value="__('Academic Qualifications')" />
             <span style="color: red !important;" class="text-xs">Multiple qualifications should be separated by a comma(,).</span>
-            <x-text-input id="academic_qualification" name="academic_qualification" type="text" class="mt-0 block w-full" :value="old('academic_qualification', $user->academic_qualification)" autofocus autocomplete="academic_qualification" />
+            <x-text-input id="academic_qualification" name="academic_qualification" type="text" class="mt-0 block w-full" :value="old('academic_qualification', $user->academic_qualification)" placeholder="HND(Computer Science), Mhil(Project Management), PhD(Artificial Intelligence)" autofocus autocomplete="academic_qualification" />
             <x-input-error class="mt-2" :messages="$errors->get('academic_qualification')" />
         </div>
 
