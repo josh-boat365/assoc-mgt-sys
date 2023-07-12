@@ -47,18 +47,6 @@ class DashboardController extends Controller
         return view('user.dues');
     }
 
-    public function conference_view()
-    {
-        return view('user.conference');
-    }
-
-
-    public function resources_view()
-    {
-        return view('user.resources');
-    }
-
-
     public function chats_view()
     {
         return view('user.chats');
@@ -70,8 +58,5 @@ class DashboardController extends Controller
         return view('user.shop');
     }
 
-    public function dues_receipt_view()
-    {
-        return view('user.dues-receipt');
-    }
+
 }
