@@ -7,7 +7,7 @@
 
     <div class="w-[6rem] ml-[10rem] mt-5  text-center p-2 shadow rounded">
         <a href="{{route('admin.home')}}">
-            <span><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180 "></i>&nbsp;<spanclear>Back</span></span>
+            <span><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180 "></i>&nbsp;<span>Back</span></span>
         </a>
     </div>
 
@@ -45,14 +45,14 @@
                                         2
                                     </th>
                                     <td class="px-6 py-4">
-                                        2021/2022 Association Dues
+                                        January 2022 Conference
                                     </td>
                                     <td class="px-6 py-4">
-                                        paid
+                                        registered
                                     </td>
                                     <td class="px-6 py-4 text-right">
                                         <!-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> -->
-                                        <a href="{{route('dues.receipt.view')}}">
+                                        <a href="{{route('conference.receipt')}}">
                                             <x-primary-button class="ml-4"> {{ __('View receipt') }} </x-primary-button>
                                         </a>
                                     </td>
@@ -62,70 +62,20 @@
                                         1
                                     </th>
                                     <td class="px-6 py-4">
-                                        2019/2020 Association Dues
+                                        August 2023 Conference
                                     </td>
                                     <td class="px-6 py-4">
-                                        not-paid
+                                        not-registered
                                     </td>
                                     <td class="px-6 py-4 text-right">
                                         <!-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> -->
-                                        <a href="#">
-                                            <x-green-button class="ml-4"> {{ __('Make Payment') }} </x-green-button>
+                                        <a href="{{ route('conference.registration.view') }}">
+                                            <x-green-button class="ml-4"> {{ __('Register Conference') }} </x-green-button>
                                         </a>
                                     </td>
                                 </tr>
 
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 ">
-                                    <th scope="row" class=" py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        3
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        2022/2023 Association Dues
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        not-paid
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <!-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> -->
-                                        <a href="{#">
-                                            <x-green-button class="ml-4"> {{ __('Make Payment') }} </x-green-button>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 ">
-                                    <th scope="row" class=" py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        4
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        2023/2024 Association Dues
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        not-paid
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <!-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> -->
-                                        <a href="{#">
-                                            <x-green-button class="ml-4"> {{ __('Make Payment') }} </x-green-button>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 ">
-                                    <th scope="row" class=" py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        5
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        2022/2023 Association Dues
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        not-paid
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <!-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> -->
-                                        <a href="{#">
-                                            <x-green-button class="ml-4"> {{ __('Make Payment') }} </x-green-button>
-                                        </a>
-                                    </td>
-                                </tr>
+
 
                             </tbody>
                         </table>
