@@ -7,7 +7,7 @@
 
     <div class="w-[6rem] ml-[10rem] mt-5  text-center p-2 shadow rounded">
         <a href="{{route('dues.view')}}">
-            <span><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180 "></i>&nbsp;<spanclear>Back</span></span>
+            <span><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180 "></i>&nbsp;<span>Back</span></span>
         </a>
     </div>
 
