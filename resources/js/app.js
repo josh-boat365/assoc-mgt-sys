@@ -3,6 +3,9 @@ import 'flowbite';
 
 // import Tagify from '@yaireo/tagify';
 
+import './../../vendor/power-components/livewire-powergrid/dist/powergrid'
+import './../../vendor/power-components/livewire-powergrid/dist/powergrid.css'
+
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
