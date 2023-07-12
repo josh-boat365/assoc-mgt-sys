@@ -12,7 +12,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl md:mx-auto sm:px-6 lg:px-8 bg-white shadow p-4">
-            <livewire:resources />
+            <livewire:resources-table/>
         </div>
     </div>
 

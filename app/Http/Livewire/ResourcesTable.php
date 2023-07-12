@@ -5,14 +5,12 @@ namespace App\Http\Livewire;
 use App\Models\Resources;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use PowerComponents\LivewirePowerGrid\Filters\Filter;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\{ActionButton, WithExport};
+use PowerComponents\LivewirePowerGrid\Filters\Filter;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridColumns};
-use OpenSpout\Writer\XLSX\Options;
 
-
-final class Users extends PowerGridComponent
+final class ResourcesTable extends PowerGridComponent
 {
     use ActionButton;
     use WithExport;
@@ -30,7 +28,7 @@ final class Users extends PowerGridComponent
 
         return [
             Exportable::make('export')
-                ->striped('#12rrrr')
+                ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput(),
             Footer::make()
@@ -50,7 +48,7 @@ final class Users extends PowerGridComponent
     /**
      * PowerGrid datasource.
      *
-     * @return Builder<\App\Models\User>
+     * @return Builder<\App\Models\Resources>
      */
     public function datasource(): Builder
     {
@@ -92,12 +90,11 @@ final class Users extends PowerGridComponent
             ->addColumn('id')
             ->addColumn('title')
 
-            /** Example of custom column using a closure **/
+           /** Example of custom column using a closure **/
             ->addColumn('title_lower', fn (Resources $model) => strtolower(e($model->title)))
 
             ->addColumn('description')
             ->addColumn('link')
-
             ->addColumn('created_at_formatted', fn (Resources $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
@@ -110,11 +107,11 @@ final class Users extends PowerGridComponent
     |
     */
 
-    /**
-     * PowerGrid Columns.
-     *
-     * @return array<int, Column>
-     */
+     /**
+      * PowerGrid Columns.
+      *
+      * @return array<int, Column>
+      */
     public function columns(): array
     {
         return [
@@ -131,6 +128,8 @@ final class Users extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
+            Column::make('Created at', 'created_at_formatted', 'created_at')
+                ->sortable(),
 
         ];
     }
@@ -159,44 +158,30 @@ final class Users extends PowerGridComponent
     */
 
     /**
-     * PowerGrid User Action Buttons.
+     * PowerGrid Resources Action Buttons.
      *
      * @return array<int, Button>
      */
 
-
+    /*
     public function actions(): array
     {
-        return [
-            Button::make('edit', 'Edit')
-                ->class('bg-green-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-                ->route('', function (\App\Models\User $model) {
+       return [
+           Button::make('edit', 'Edit')
+               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+               ->route('resources.edit', function(\App\Models\Resources $model) {
                     return $model->id;
-                }),
+               }),
 
-            Button::make('role', 'Role')
-                ->class('bg-green-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-                ->route('', function (\App\Models\User $model) {
+           Button::make('destroy', 'Delete')
+               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+               ->route('resources.destroy', function(\App\Models\Resources $model) {
                     return $model->id;
-                }),
-
-
-            Button::make('reset', 'Reset')
-                ->class('bg-green-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-                ->route('', function (\App\Models\User $model) {
-                    return $model->id;
-                }),
-
-
-            Button::make('destroy', 'Suspend')
-                ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-                ->route('', function (\App\Models\User $model) {
-                    return $model->id;
-                })
-                ->method('delete')
+               })
+               ->method('delete')
         ];
     }
-
+    */
 
     /*
     |--------------------------------------------------------------------------
@@ -207,7 +192,7 @@ final class Users extends PowerGridComponent
     */
 
     /**
-     * PowerGrid User Action Rules.
+     * PowerGrid Resources Action Rules.
      *
      * @return array<int, RuleActions>
      */
@@ -219,7 +204,7 @@ final class Users extends PowerGridComponent
 
            //Hide button edit for ID 1
             Rule::button('edit')
-                ->when(fn($user) => $user->id === 1)
+                ->when(fn($resources) => $resources->id === 1)
                 ->hide(),
         ];
     }
