@@ -5,7 +5,7 @@
         <!-- Bar number -->
         <div>
             <!-- <span class="relative text-gray-300 text-[0.6rem]">Can contain only letters and numbers</span> -->
-            <input type="hidden" name="association_id" value="SPA001">
+            <input type="hidden" name="association_id" value="SPA002">
             <!-- <x-input-error :messages="$errors->get('association_id')" class="mt-2" /> -->
         </div>
         <!-- Username -->
