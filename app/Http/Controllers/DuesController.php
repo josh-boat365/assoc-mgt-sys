@@ -57,4 +57,9 @@ class DuesController extends Controller
 
         return view('user.payment-details', compact(['server_data']));
     }
+
+    public function dues_receipt_view()
+    {
+        return view('user.dues-receipt');
+    }
 }
