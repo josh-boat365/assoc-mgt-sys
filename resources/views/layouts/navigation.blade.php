@@ -32,7 +32,12 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div class="mr-3 font-semibold">{{ Auth::user()->username }}</div>
+
+                            @empty(Auth::user()->firstname && Auth::user()->surname)
+                             <div class="mr-3 font-semibold">{{ Auth::user()->username }}</div>
+                             @else
+                                <div class="mr-3 font-semibold">{{ Auth::user()->firstname }} {{ Auth::user()->surname }}</div>
+                            @endempty
                             @empty(Auth::user()->profile_image)
 
                             <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
